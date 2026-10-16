@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="صفحه شخصی امین؛ تولید محتوا، یادگیری و تجربه‌های واقعی">
+<title>امین | مسیر من</title>
+
+<style>
+/* تنظیمات پایه */
+:root {
+  --bg: #0b0b14;
+  --panel: #151523;
+  --text: #f7f5ff;
+  --muted: #aaa7bd;
+  --purple: #a78bfa;
+  --pink: #fb7185;
+  --mint: #5eead4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, #39245b55, transparent 35%),
+    radial-gradient(circle at 90% 50%, #50253633, transparent 30%),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.9;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 1080px;
+  margin: auto;
+}
+
+/* منوی بالا */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #0b0b14dd;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #ffffff16;
+}
+
+nav {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: var(--purple);
+}
+
+.menu {
+  display: flex;
+  gap: 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.menu a:hover {
+  color: var(--mint);
+}
+
+/* بخش معرفی */
+.hero {
+  min-height: 570px;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  align-items: center;
+  gap: 40px;
+  padding: 65px 0;
+}
+
+.label {
+  display: inline-block;
+  color: var(--mint);
+  border: 1px solid #5eead444;
+  background: #5eead40d;
+  padding: 5px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: clamp(36px, 5vw, 65px);
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.gradient {
+  background: linear-gradient(
+    90deg,
+    var(--purple),
+    var(--pink),
+    var(--mint)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: colors 5s ease infinite;
+}
+
+.description {
+  color: var(--muted);
+  max-width: 560px;
+  margin-bottom: 27px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid #ffffff20;
+  font-size: 14px;
+  font-weight: bold;
+  transition: .25s;
+}
+
+.button:hover {
+  transform: translateY(-4px);
+}
+
+.primary {
+  background: linear-gradient(120deg, var(--purple), #d8b4fe);
+  color: #171022;
+  border: none;
+}
+
+.secondary {
+  background: #ffffff08;
+}
+
+/* کارت متحرک پروفایل */
+.visual {
+  position: relative;
+  min-height: 350px;
+  display: grid;
+  place-items: center;
+}
+
+.orbit {
+  position: absolute;
+  width: 290px;
+  height: 290px;
+  border: 1px solid #a78bfa55;
+  border-radius: 50%;
+  animation: rotate 20s linear infinite;
+}
+
+.orbit::before {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background: var(--mint);
+  border-radius: 50%;
+  top: 30px;
+  right: 35px;
+  box-shadow: 0 0 20px var(--mint);
+}
+
+.orbit-two {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border: 1px dashed #fb718555;
+  border-radius: 50%;
+  animation: rotate 16s linear infinite reverse;
+}
+
+.profile {
+  position: relative;
+  z-index: 1;
+  width: 205px;
+  padding: 27px 15px;
+  text-align: center;
+  border: 1px solid #ffffff25;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #ffffff19, #ffffff05);
+  box-shadow: 0 20px 70px #0005;
+  animation: float 4s ease-in-out infinite;
+}
+
+.avatar {
+  width: 85px;
+  height: 85px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, var(--purple), var(--pink), var(--mint));
+  color: #171022;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.profile p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* بخش‌های پایین */
+section {
+  scroll-margin-top: 90px;
+}
+
+.content-section {
+  padding: 38px 0;
+}
+
+.section-label {
+  color: var(--mint);
+  font-size: 13px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.about-box {
+  background: #ffffff08;
+  border: 1px solid #ffffff15;
+  border-radius: 20px;
+  padding: 25px;
+  color: #cfccdc;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.card {
+  background: #ffffff07;
+  border: 1px solid #ffffff15;
+  border-radius: 18px;
+  padding: 23px;
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #a78bfa88;
+  background: #a78bfa0c;
+}
+
+.card .icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  font-size: 17px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* دعوت به اینستاگرام */
+.instagram-box {
+  margin-top: 15px;
+  padding: 30px;
+  border: 1px solid #a78bfa55;
+  border-radius: 22px;
+  background: linear-gradient(120deg, #a78bfa17, #fb718510);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.instagram-box p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* پایین سایت */
+footer {
+  text-align: center;
+  margin-top: 55px;
+  padding: 25px 0;
+  border-top: 1px solid #ffffff15;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* انیمیشن‌ها */
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes colors {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+/* نمایش موبایل */
+@media (max-width: 720px) {
+  nav {
+    padding: 14px 0;
+    flex-direction: column;
+  }
+
+  .menu {
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 45px;
+  }
+
+  .description {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .visual {
+    min-height: 320px;
+  }
+
+  .orbit {
+    width: 260px;
+    height: 260px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .instagram-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">امین<span>.</span></a>
+
+      <div class="menu">
+        <a href="#about">درباره من</a>
+        <a href="#content">محتواهای من</a>
+        <a href="#instagram">اینستاگرام</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero" id="home">
+    <div>
+      <div class="label">● در حال ساختن مسیر خودم</div>
+
+      <h1>
+        من امینم؛<br>
+        دارم <span class="gradient">چیزای تازه</span> می‌سازم.
+      </h1>
+
+      <p class="description">
+        اینجا گوشه‌ای از مسیر منه؛ از ایده‌هایی که توی ذهنم می‌چرخن
+        تا چیزهایی که یاد می‌گیرم و تجربه‌هایی که باهاتون به اشتراک می‌ذارم.
+      </p>
+
+      <div class="buttons">
+        <a href="#instagram" class="button primary">
+          بیا اینستاگرام ↙
+        </a>
+
+        <a href="#about" class="button secondary">
+          بیشتر درباره من
+        </a>
+      </div>
+    </div>
+
+    <div class="visual">
+      <div class="orbit"></div>
+      <div class="orbit-two"></div>
+
+      <div class="profile">
+        <div class="avatar">ا</div>
+        <h3>امین</h3>
+        <p>تولید محتوا · یادگیری · تجربه</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" id="about">
+    <span class="section-label">کمی درباره من</span>
+    <h2>قرار نیست همه‌چی از اول عالی باشه.</h2>
+
+    <div class="about-box">
+      من دارم تجربه می‌کنم، یاد می‌گیرم و چیزهایی رو که برام جالبه
+      با بقیه به اشتراک می‌ذارم. این صفحه هم قراره یه معرفی ساده از من
+      و مسیرم باشه؛ نه یه رزومه خشک و رسمی.
+    </div>
+  </section>
+
+  <section class="content-section" id="content">
+    <span class="section-label">چیزهایی که اینجا می‌بینی</span>
+    <h2>چند تکه از دنیای من</h2>
+
+    <div class="cards">
+      <article class="card">
+        <div class="icon">🎬</div>
+        <h3>تولید محتوا</h3>
+        <p>
+          ایده‌ها، ویدیوها و تجربه‌های واقعی از ساختن محتوا
+          و پیدا کردن سبک خودم.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="icon">🧠</div>
+        <h3>چیزهایی که یاد می‌گیرم</h3>
+        <p>
+          مهارت‌های تازه، اشتباه‌ها و نکته‌هایی که وسط مسیر
+          به دردم می‌خورن.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="icon">🌱</div>
+        <h3>مسیر رشد</h3>
+        <p>
+          قدم‌های کوچیک، تغییر دیدگاه و تلاش برای بهتر شدن،
+          بدون ادا و اطوار.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="content-section" id="instagram">
+    <div class="instagram-box">
+      <div>
+        <span class="section-label">بیرون از این سایت</span>
+        <h2>ادامه مسیر رو اینستاگرام ببین</h2>
+        <p>
+          ویدیوها و پست‌های جدیدم رو اونجا منتشر می‌کنم.
+          لینک زیر رو با آیدی واقعی خودت جایگزین کن.
+        </p>
+      </div>
+
+      <a
+        class="button primary"
+        href="https://www.instagram.com/your_username/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        رفتن به اینستاگرام ↗
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  سایت شخصی امین | ساخته‌شده با HTML و CSS
+</footer>
+
+</body>
+</html>
